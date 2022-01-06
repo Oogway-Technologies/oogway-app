@@ -1,0 +1,14 @@
+.home {
+    background: #f1f2f5;
+    display: flex;
+    max-width: 1464px;
+    flex-shrink: 1;
+    justify-content: center;
+    box-sizing: border-box;
+    z-index: 0;
+    flex-grow: 1;
+    flex-direction: row;
+    min-width: 360px;
+    position: relative;
+    align-items: stretch;
+}

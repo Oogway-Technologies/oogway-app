@@ -1,0 +1,16 @@
+.decisionContextMedia__wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.decisionContextMedia__top > .MuiButtonBase-root{
+    float: right;
+}
+
+.decisionContextMedia__top > .MuiButtonBase-root:hover{
+    color: #ff5050;
+}
+
+.decisionContextMedia__bottom {
+    display: flex;
+}

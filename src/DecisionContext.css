@@ -1,0 +1,30 @@
+.decisionContext {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+}
+
+.decisionContext__top {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: lightgray;
+    width: fit-content;
+}
+
+.decisionContext__top:hover {
+    background-color: #e8f5fe;
+    border-radius: 30px;
+    color: var(--oogway-color-elements);
+    transition: color 100ms ease-out;
+}
+
+.decisionContext__top > .MuiSvgIcon-root {
+    padding: 2px;
+}
+
+.decisionContext__top > h2 {
+    font-weight: 800;
+    font-size: 18px;
+    margin-right: 20px;
+  }

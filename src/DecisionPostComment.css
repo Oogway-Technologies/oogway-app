@@ -1,0 +1,25 @@
+.decisionPostComment {
+    display: flex;
+    padding-bottom: 8px;
+}
+
+.decisionPostComment__left {
+    padding-right: 10px;
+}
+
+.decisionPostComment__right {
+    width: 100%;
+    padding-top: 5px;
+}
+
+.comment__timestamp {
+    color: gray;
+    font-size: x-small !important;
+}
+
+.decisionPostComment__right > p {
+    padding: 4px;
+    padding-bottom: 0;
+    padding-left: 0;
+    font-size: small;
+}

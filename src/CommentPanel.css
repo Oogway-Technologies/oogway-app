@@ -1,0 +1,56 @@
+.commentPanel {
+    padding: 15px;
+    border-top: 1px solid lightgray;
+}
+
+.commentPanel__input {
+    display: flex;
+    padding-top: 8px;
+}
+
+.commentPanel__inputRight {
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.commentPanel__inputRight > form {
+    /* Take all the room it can possibly take */
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.commentPanel__inputRight > form > input {
+    outline-width: 0;
+    border: none;
+    padding: 5px 20px;
+    margin: 0 10px;
+    border-radius: 999px;
+    background-color: #eff2f5;
+}
+
+.commentPanel__inputRight > form > button {
+    background-color: #1da1f2 !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 500 !important;
+    text-transform: inherit !important;
+    border-radius: 15px !important;
+    width: 60px !important;
+    height: 25px !important;
+    margin-left: auto !important;
+    margin-right: 10px !important;
+}
+.commentPanel__inputRight > form > .commentPanel__inputRightIncognito > .MuiSvgIcon-root {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.commentPanel__inputRight > form > .commentPanel__inputRightIncognito > .MuiSvgIcon-root:hover {
+    background-color: #e8f5fe;
+    border-radius: 15px;
+}
+
+.commentPanel__message {
+    flex: 1;
+}

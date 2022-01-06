@@ -1,0 +1,49 @@
+.postImageLoader__imagePlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 150px;
+
+    box-shadow: 0px 5px 17px -7px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    margin: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background-color: lightgray;
+
+    /* Transition in the transformation when mouse hover the image */
+    transition: transform 100ms ease-in;
+    cursor: pointer;
+}
+
+.postImageLoader__imagePlaceholder:hover {
+    /* Scale it up 7% */
+    transform: scale(1.07);
+}
+
+.postImageLoader__imageFromUrl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 50px;
+    max-width: 230px;
+    max-height: 230px;
+
+    box-shadow: 0px 5px 17px -7px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    margin: 0px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+    transition: transform 100ms ease-in;
+    border: 3px solid white;
+    cursor: pointer;
+}
+
+.postImageLoader__imageFromUrl:hover {
+    /* Scale it up 7% */
+    transform: scale(1.07);
+}

@@ -1,0 +1,38 @@
+.sidebarRow {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebarRow:hover {
+    /*background-color: lightgray;*/
+    background-color: #e8f5fe;
+    border-radius: 10px;
+    color: var(--oogway-color-elements);
+    transition: color 100ms ease-out;
+}
+
+.sidebarRow > h4 {
+    font-weight: 450;
+    font-size: medium;
+}
+
+.sidebarRow > .MuiSvgIcon-root {
+    font-size: xx-large;
+    margin-right: 8px;
+}
+
+.sidebarRow.selected {
+    color: var(--oogway-color-elements);
+}
+
+.sidebarRow.selected > h4 {
+    font-weight: bold;
+}
+
+.sidebarRow.selected > .MuiAvatar-root {
+    border: 1px solid var(--oogway-color-elements);
+}
+
+

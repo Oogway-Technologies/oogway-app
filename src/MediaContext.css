@@ -1,0 +1,23 @@
+.mediaContext {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 250px;
+    height: 250px;
+    box-shadow: 0px 5px 17px -7px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    margin: 10px;
+    margin-top: 5px;
+
+    /* Transition in the transformation when mouse hover the image */
+    transition: transform 100ms ease-in;
+}
+
+.mediaContext:hover {
+    /* Scale it up 7% */
+    transform: scale(1.07);
+}
+

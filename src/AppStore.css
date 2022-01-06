@@ -1,0 +1,117 @@
+.appStore {
+    height: 100vh;
+}
+
+.appStore__header {
+    padding: 8px 20px;
+    display: flex;
+    position: sticky;
+    background-color: white;
+    /* Stay on top of every other component */
+    z-index: 100;
+    top: 0;
+    width: 100%;
+    
+    justify-content: space-between;
+
+    /* Make it float */
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+}
+
+.appStore__headerUser {
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.appStore__headerUser > h4 {
+    margin-left: 10px;
+    font-weight: bold;
+    padding-right: 30px;
+}
+
+.appStore__bodyInfo {
+    display: flex;
+    margin-top: 15px;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.appStore__bodyInfoLeft {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    padding-top: 12px;
+    padding-right: 0px;
+    align-content: center;
+    align-items: center;
+}
+
+.appStore__bodyInfoLeft > p {
+    font-size: 12px;
+    color: gray;
+    border: 1px solid transparent;
+}
+
+.appStore__bodyInfoLeft > .MuiAvatar-root {
+    height: 50px;
+    width: 50px;
+    border: 3px solid transparent;
+}
+
+.appStore__bodyInfoRightAnswer {
+    padding-bottom: 10px;
+}
+
+.appStore__bodyInfoRightAnswer > p {
+    font-size: 15px;
+}
+
+.appStore__bodyInfoRight {
+    flex: 1;
+    padding: 15px;
+    padding-bottom: 5px;
+    width: fit-content;
+}
+
+.appStore__bodyInfoRightQuestion {
+    display: flex;
+    padding-bottom: 15px; 
+}
+
+
+.appStore__bodyInfoRightQuestion > h2 {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.appStore__bodyInfo > h2 {
+    font-weight: 500;
+}
+
+.appStore__headerLogo {
+    cursor: pointer;
+}
+
+.appStore__body {
+    display: grid;
+    place-items: center;
+}
+
+.appStore_cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 500px) {
+    .appStore {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+}

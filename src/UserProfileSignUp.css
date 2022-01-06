@@ -1,0 +1,191 @@
+.userProfileSignUp {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+.userProfileSignUp__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    
+    margin-top: 15px;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+    padding: 40px;
+
+    min-width: 640px;
+    max-height: 100%;
+    
+    position: relative;
+
+    cursor: default;
+    max-width: 64rem;
+
+
+    --tw-bg-opacity: 1;
+
+    overflow: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.userProfileSignUp__card::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.userProfileSignUp__card {
+    display: flex;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.userProfileSignUp__cardContent {
+    display: flex;
+
+    align-content:space-between;
+    gap: 2.5rem;
+}
+
+.profileSignUp__info {
+    display: flex;
+    flex-direction: column;
+    width: 33.3333%;
+}
+
+.profileSignUp__info > h2 {
+    padding-top: 132px;
+    font-weight: 700;
+}
+
+.profileSignUp__infoDescription {
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+.profileSignUp__infoDescription > p {
+    font-weight: 500;
+}
+
+.profileSignUp__infoDescription > span {
+    display: block;
+    margin-bottom: 16px;
+}
+
+.profileSignUp__data {
+    display: flex;
+    flex-direction: column;
+    width: 66.6669%;
+    max-width: 42rem;
+}
+
+.signup__profilePicture {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.signup__profilePictureImg {
+    width: 142px;
+    height: 142px;
+    object-fit: cover;
+    border-radius: 9999px;
+    border: 1px;
+    margin-right: 16px;
+}
+
+.signup__profilePictureImgLoader {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup__profilePictureImgLoader > label {
+    margin-left: 4px;
+    margin-bottom: 8px;
+    margin-top: 40px;
+}
+
+.signup__profilePictureImgLoader > button {
+    border: 1px solid;
+    padding: 5px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: medium;
+    font-weight: 500;
+    background-color: #1da1f2;
+    color: white;
+}
+
+.signup__profilePictureImgLoader > button:hover {
+    border: 1px solid #1da1f2;
+    color: #1da1f2;
+    background-color: white;
+}
+
+.signup__profileData {
+    margin-top: 20px;
+    margin-bottom: 24px;
+}
+
+.firstLastName {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 16px;
+}
+
+.signup__profileDataFirstName {
+    min-width: 55%;
+}
+
+.signup__profileDataLastName {
+    width: 100%;
+}
+
+.bioInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.bioInfo > span {
+    font-size: medium;
+    margin-bottom: 8px;
+    margin-left: 4px;
+    text-size-adjust: 100%;   
+}
+
+.bioInfo > textarea {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid black;
+    font-size: 18px !important;
+    font-family: Roboto;
+}
+
+.signup__profileDataSubmit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.signup__profileDataSubmit > button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 1px solid;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #1da1f2;
+    color: white;
+}
+
+.signup__profileDataSubmitSave {
+    margin-right: 10px;
+}
+
+.signup__profileDataSubmit > button:hover {
+    border: 1px solid #1da1f2;
+    color: #1da1f2;
+    background-color: white;
+}

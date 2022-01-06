@@ -1,0 +1,28 @@
+.profileInfo {
+    background-color: white;
+    border-radius: 15px;
+    padding: 16px;
+    padding-bottom: 0px;
+}
+
+.profileInfo__top {
+    display: flex;
+    align-items: center;
+}
+
+.profileInfo__pic > .MuiAvatar-root {
+    height: 138px;
+    width: 138px;
+    border: 3px solid #1da1f2;
+    margin-right: 16px;
+}
+
+.profileInfo__top > h1 {
+    font-family: 700;
+}
+
+.profile__sep {
+    padding: 5px;
+    padding-top: 16px;
+    /*border-bottom: 1px solid darkgray;*/
+}

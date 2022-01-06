@@ -1,0 +1,22 @@
+.profileNameInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileNameInput > span {
+    font-size: medium;
+    margin-bottom: 8px;
+    margin-left: 4px;
+    text-size-adjust: 100%;   
+}
+
+.profileNameInput > input {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid black;
+    font-size: medium;
+}
+
+.profileNameInput > input::-webkit-input-placeholder {
+    color: black;
+}

@@ -1,0 +1,49 @@
+.postMediaLoader {
+    display: flex;
+    align-items: center;
+}
+
+.postMediaLoader__options {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.postMediaLoader__options > .MuiButtonBase-root:hover {
+    color: var(--oogway-color-elements);
+}
+
+.postMediaLoader__optionText > form > input {
+    padding: 5px;
+    margin-right: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    outline-width: 0;
+}
+
+.postMediaLoader__optionText > form > button {
+    display: none;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    background-color: #fafafa;
+    color: gray;
+}
+
+.postMediaLoader__optionText > form > button:hover {
+    color: var(--oogway-color-elements);
+}
+
+@media only screen and (max-width: 1400px) {
+    .postMediaLoader {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .postMediaLoader__options {
+        display: flex;
+        flex-direction: row;
+    }
+}

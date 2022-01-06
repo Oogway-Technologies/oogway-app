@@ -1,0 +1,77 @@
+.login {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+.login__button {
+    display: flex;
+    align-items: center;
+    background-color: #1da1f2;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid #1da1f2;
+}
+
+.login__button > img {
+    border-right: 1px solid #1da1f2;
+    padding: 10px;
+    background-color: white;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+    border-right: 1px solid #1da1f2;
+}
+
+.login__buttonText {
+    padding: 13px;
+}
+
+.login__buttonText > p {
+    color: white;
+}
+
+.login__buttonText:hover {
+    background-color: white;
+    color: #1da1f2;
+}
+
+.login__buttonText:hover > p {
+    color: #1da1f2;
+}
+
+.login__info {
+    max-width: 500px;
+    margin-top: 15px;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+}
+
+.login__infoText {
+    padding: 10px;
+}
+
+.login__infoText > h2 {
+    padding-bottom: 10px;
+}
+
+.login__icons {
+    display: flex;
+}
+
+.login__icon {
+    padding: 10px;
+    padding-right: 2px;
+    display: flex;
+}
+
+.login__icon > img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 100ms ease-in;
+}
+
+.login__icon > img:hover {
+    transform: scale(1.07);
+}

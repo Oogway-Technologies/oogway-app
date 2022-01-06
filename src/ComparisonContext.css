@@ -1,0 +1,120 @@
+.comparisonContext {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.comparisonContext__left {
+    display: flex;
+    align-items: center;
+}
+
+.comparisonContext__right{
+    display: flex;
+    align-items: center;
+}
+
+.options__left {
+    display: flex;
+    flex-direction: column;
+}
+
+.options__right {
+    display: flex;
+    flex-direction: column;
+}
+
+.options__left > .MuiButtonBase-root:hover {
+    color: var(--oogway-color-elements);
+}
+
+.options__right > .MuiButtonBase-root:hover {
+    color: var(--oogway-color-elements);
+}
+
+.comparisonContext__center {
+    flex-wrap: wrap;
+}
+
+.comparisonContext__center > img {
+    width: 40px;
+    height: 40px;
+}
+
+@media only screen and (max-width: 1400px) {
+    .comparisonContext {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+}
+
+.comparisonContext__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 150px;
+
+    box-shadow: 0px 5px 17px -7px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    margin: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background-color: lightgray;
+
+    /* Transition in the transformation when mouse hover the image */
+    transition: transform 100ms ease-in;
+    cursor: pointer;
+}
+
+.image__preview {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.comparisonContext__image:hover {
+    /* Scale it up 7% */
+    transform: scale(1.07);
+}
+
+.comparePost__imagePreview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 50px;
+    max-width: 200px;
+    max-height: 200px;
+
+    box-shadow: 0px 5px 17px -7px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    margin: 0px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background-color: lightgray;
+
+    transition: transform 100ms ease-in;
+    border: 3px solid white;
+    cursor: pointer;
+}
+
+.comparePost__imagePreview:hover {
+    /* Scale it up 7% */
+    transform: scale(1.07);
+}
+
+.comparisonContext__text > form > input {
+    padding: 5px;
+    margin-right: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    outline-width: 0;
+}
+
+.comparisonContext__text > form > button {
+    display: none;
+}
