@@ -1,23 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import './Profile.css'
+import React, {useState, useEffect} from 'react'
+import './PublicProfile.css'
 
 import ProfileInfo from './ProfileInfo';
 import Post from './Post';
-import {useStateValue} from './StateProvider'
+import { useParams } from "react-router-dom";
 import db from "./firebase"
 import firebase from 'firebase/compat/app';
 
-function Profile({setSelectedPage}) {
+function PublicProfile() {
     const [posts, setPosts] = useState([])
-    const [{ user, userProfile }, dispatch] = useStateValue();
+    const [userProfileData, setUserProfileData] = useState(null);
+    let params = useParams();
 
-    // Get user unique ID
-    let uniqueUserId = user.uid;
-
-    // Set selected page
-    setSelectedPage("profile");
-    
-    function handlePostIdReelGeneration(postIdList)
+    function setUserPosts(postIdList)
     {
         db.collection('posts')
         .where(firebase.firestore.FieldPath.documentId(), 'in', postIdList)
@@ -28,44 +23,41 @@ function Profile({setSelectedPage}) {
         );
     }
 
-    // Only run once when the feed loads
+
+    // On page load, get user profile data
     useEffect(() => {
-        // Get the posts from the user
         db.collection('users')
-        .where("userId", "==", uniqueUserId)
-        .limit(1)
-        .get()
-        .then(query => {
-            if (query.docs.length > 0)
+            .where("userProfile.userName", "==", params.profileName)
+            .limit(1)
+            .onSnapshot((snapshot) =>
             {
-                const queryDoc = query.docs[0];
-                let tmp = queryDoc.data();
-                handlePostIdReelGeneration(tmp.userPosts.slice(-10));
+                if (snapshot.docs.length > 0)
+                {
+                    // Set user's profile
+                    setUserProfileData(snapshot.docs[0].data().userProfile);
+
+                    // Set user's public posts
+                    setUserPosts(snapshot.docs[0].data().userPosts.slice(-10));
+                }
             }
-            else
-            {
-                // User does not exist
-                console.log('Error user not found: ' + uniqueUserId);
-            }
-        })
-        .catch(function(error) {
-            console.log("Error getting documents: ", error);
-        });
-    }, [uniqueUserId]);
+        );
+    }, []);
 
     return (
-        <div className='profile'>
-            <div className='profile__info'>
+        <div className='publicProfile'>
+            <div className='publicProfile__info'> 
                 <ProfileInfo
-                    profilePic={userProfile.userPic}
-                    profileName={userProfile.userName}
-                    profileBio={userProfile.userBio}
+                    profilePic={userProfileData ? userProfileData.userPic : ""}
+                    profileName={params.profileName}
+                    profileBio={userProfileData ? userProfileData.userBio : ""}
                 />
             </div>
 
-            <div className='profile__feed'>
+            <div className='publicProfile__feed'>
             
             {posts.map((post) => (
+                <>
+                {!post.data.isIncognito &&
                 <Post
                     key={post.id}
                     profilePic={post.data.profilePic}
@@ -83,7 +75,8 @@ function Profile({setSelectedPage}) {
                     comments={post.data.commentList}
                     isComparison={post.data.isComparison}
                     postId={post.id}
-                />
+                />}
+                </>
             ))}
 
             </div>
@@ -91,4 +84,4 @@ function Profile({setSelectedPage}) {
     )
 }
 
-export default Profile
+export default PublicProfile

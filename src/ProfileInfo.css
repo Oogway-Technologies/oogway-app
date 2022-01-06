@@ -26,3 +26,15 @@
     padding-top: 16px;
     /*border-bottom: 1px solid darkgray;*/
 }
+
+.profileInfo > hr {
+    height: 1px;
+    border: 0px;
+    background-color: lightgray;
+    margin-top: 16px;
+    margin-bottom: 10px;
+}
+
+.profileInfo__center {
+    padding-top: 5px;
+}
