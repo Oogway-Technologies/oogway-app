@@ -5,6 +5,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import Feed from './Feed';
 import Profile from './Profile';
+import PublicProfile from './PublicProfile';
 import Widgets from './Widgets';
 
 import {
@@ -25,6 +26,9 @@ function SocialApp() {
                 <Sidebar selectedPage={selectedPage}/>
 
                 <Routes>
+                    {/* Public profile*/}
+                    <Route path="/pprofile/:profileName" element={<PublicProfile/>}/>
+
                     {/* Personal profile*/}
                     <Route path="/profile" element={<Profile setSelectedPage={setSelectedPage}/>}/>
 

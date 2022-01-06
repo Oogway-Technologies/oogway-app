@@ -10,6 +10,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
 import {useStateValue} from './StateProvider'
 import db from './firebase'
+import { Link } from "react-router-dom"
 
 function Post({
     profilePic,
@@ -123,13 +124,17 @@ function Post({
     return (
         <div className={classNamePost}>
             <div className='post__left'>
-                <Avatar src={profilePic} className="post__avatar" />
+                <Link to={`/socialApp/pprofile/${username}`}>
+                    <Avatar src={profilePic} className="post__avatar"/>
+                </Link>
             </div>
 
             <div className='post__right'>
                 <div className='post__top'>
                     <div className='post__topInfo'>
+                    <Link to={`/socialApp/pprofile/${username}`} style={{ textDecoration: 'none', color: "black"}}>
                         <h4>{username}</h4>
+                    </Link>
                         <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
                     </div>
                 </div>

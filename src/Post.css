@@ -21,6 +21,10 @@
     padding-right: 0px;
 }
 
+.post__avatar {
+    cursor: pointer;
+}
+
 .post__right {
     width: 95%;
     padding-right: 15px;
@@ -33,8 +37,8 @@
     padding: 15px;
 }
 
-.post__topInfo > h3 {
-    font-size: medium;
+.post__topInfo > h4 {
+    cursor: pointer;
 }
 
 .post__topInfo > p {

@@ -3,7 +3,7 @@ import './ProfileInfo.css'
 
 import { Avatar } from '@mui/material'
 
-function ProfileInfo({profilePic, profileName}) {
+function ProfileInfo({profilePic, profileName, profileBio}) {
     return (
         <div className='profileInfo'>
             <div className='profileInfo__top'>
@@ -11,10 +11,12 @@ function ProfileInfo({profilePic, profileName}) {
                     <Avatar src={profilePic}/>
                 </div>
                 <h1>{profileName}</h1>
-
             </div>
-            <div className='profileInfo__bottom'>
-                
+
+            <hr />
+
+            <div className='profileInfo__center'>
+                <p>{profileBio}</p>
             </div>
 
             <div className='profile__sep'>

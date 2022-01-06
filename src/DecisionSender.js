@@ -30,6 +30,7 @@ function DecisionSender() {
     const [incognitoOrUserName, setIncognitoOrUserName] = useState(userName[0]);
     const [incognitoOrUserNamePost, setIncognitoOrUserNamePost] = useState(userProfile.userName);
     const [isComparisonContext, setIsComparisonContext] = useState(false);
+    const [toggleDecisionContext, setToggleDecisionContext] = useState(false);
 
     // Set a variable to keep track of the event "laod file".
     // This will allow us to re-load the same image after the first
@@ -177,6 +178,7 @@ function DecisionSender() {
         setMediaUrl("");
         setToggleOptionDisplay(false);
         setIsComparisonContext(false);
+        setToggleDecisionContext(false);
     }
 
     return (
@@ -190,7 +192,12 @@ function DecisionSender() {
                     <form>
                         <input
                             value={input}
-                            onChange={(e) => setInput(e.target.value)}
+                            onFocus={(e) => {
+                                setToggleDecisionContext(true);
+                            }}
+                            onChange={(e) => {
+                                setInput(e.target.value);
+                            }}
                             className='decisionSender_input'
                             placeholder={`What are you deciding, ${incognitoOrUserName}?`}
                         />
@@ -201,11 +208,11 @@ function DecisionSender() {
                 </div>
 
                 <div className='decisionSender__center'>
-                    <DecisionContext
+                    {toggleDecisionContext && <DecisionContext
                         toggleContext={toggleContext}
                         setToogleContext={setToogleContext}
                         onChangeContextMsg={setContextMessage}
-                    />
+                    />}
                 </div>
 
                 <div className='decisionSender__centerMedia'>
