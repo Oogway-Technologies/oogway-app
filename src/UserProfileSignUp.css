@@ -189,3 +189,11 @@
     color: #1da1f2;
     background-color: white;
 }
+
+
+.profileSignUp__infoDescription > img {
+    padding-top: 8px;
+    max-height: 100%;
+    max-width: 200px;
+    margin-left: 65px;
+}

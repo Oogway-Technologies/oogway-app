@@ -272,8 +272,8 @@ function DecisionSender() {
                                     else
                                     {
                                         setIncognitoOrUserName(userName[0]);
-                                        setIncognitoOrUserNamePost(user.displayName);
-                                        setIncognitoOrUserPicUrl(user.photoURL);
+                                        setIncognitoOrUserNamePost(userProfile.userName);
+                                        setIncognitoOrUserPicUrl(userProfile.userPic);
                                     }
                                 }}
                             >
