@@ -11,6 +11,7 @@ function UserProfileSignUp() {
     const { uniqueNamesGenerator, adjectives, colors, animals } = require('unique-names-generator');
     const [targetValueVar, setTargetValueVar] = useState(null);
     const [toggleSuccessMsg, setToggleSuccessMsg] = useState(null);
+    const [toggleFailMsg, setToggleFailMsg] = useState("");
 
     const randomName = uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] });
     const userFirstName = user.displayName.split(/[ ,]+/)[0];
@@ -35,7 +36,7 @@ function UserProfileSignUp() {
        return result + '_';
     }
     
-    function handleSetProfile() {
+    function setupProfile() {
         db.collection('users')
         .where("userId", "==", user.uid)
         .limit(1)
@@ -57,7 +58,9 @@ function UserProfileSignUp() {
                 userProfile['userFirstName'] = nameInfo;
                 userProfile['userLastName'] = lastNameInfo;
                 userProfile['userBio'] = bioInfo;
+                
                 setToggleSuccessMsg(userProfile);
+                setToggleFailMsg("");
 
                 // Update the data
                 query.docs[0].ref.update(tmp);
@@ -69,6 +72,28 @@ function UserProfileSignUp() {
         });
     }
 
+    function handleSetProfile() {
+        // First check if the name has been taken, if so, notify the user
+        db.collection('users')
+        .where("userProfile.userName", "==", usernameInfo)
+        .limit(1)
+        .get()
+        .then(query => {
+            if (query.docs.length === 1)
+            {
+                setToggleSuccessMsg(null);
+                setToggleFailMsg(usernameInfo);
+            }
+            else
+            {
+                setupProfile();
+            }
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+        });
+    }
+    
     const setImage = (e) => {
         const file = e.target.files[0];
         const randomImagePrefix = makeRandomIdPrefix(8);
@@ -113,10 +138,18 @@ function UserProfileSignUp() {
                                     <>
                                     <h4>Well done {toggleSuccessMsg.userName}!</h4>
                                     <h4>Looks that you are ready to go.</h4>
+                                    <img src={"https://c.tenor.com/xHg7HK_ziuoAAAAM/clapping-leonardo-dicaprio.gif"} alt=""/>
                                     </>
                                     
                                 ) : (
-                                    <></>
+                                    <>
+                                    {toggleFailMsg !== "" && 
+                                        <>
+                                            <h4>Uh oh, looks like {toggleFailMsg} is already taken...</h4>
+                                            <img src={"https://c.tenor.com/gaEpIfzxzPEAAAAM/pedro-monkey-puppet.gif"} alt=""/>
+                                        </>
+                                    }
+                                    </>
                                 )}
                         </div>
                     </div>
@@ -124,7 +157,6 @@ function UserProfileSignUp() {
                     {/* User data onSubmit={handleSetProfile()} */}
                     <form
                         className='profileSignUp__data'
-                        
                     >
 
                         {/* User profile picture */}

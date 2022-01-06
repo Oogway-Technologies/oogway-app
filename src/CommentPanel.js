@@ -8,11 +8,11 @@ import {useStateValue} from './StateProvider'
 import db from './firebase'
 
 function CommentPanel({commentsList, postId}) {
-    const [{ user }, dispatch] = useStateValue();
+    const [{ user, userProfile }, dispatch] = useStateValue();
     const [input, setInput] = useState('')
     const [toggleAvatarIncognito, setToggleAvatarIncognito] = useState(false);
-    const [incognitoOrUserPicUrl, setIncognitoOrUserPicUrl] = useState(user.photoURL);
-    const [incognitoOrUserName, setIncognitoOrUserName] = useState(user.displayName);
+    const [incognitoOrUserPicUrl, setIncognitoOrUserPicUrl] = useState(userProfile.userPic);
+    const [incognitoOrUserName, setIncognitoOrUserName] = useState(userProfile.userName);
 
     // Create a random seed
     function makeRandomSeed(length) {
@@ -101,8 +101,8 @@ function CommentPanel({commentsList, postId}) {
                                 }
                                 else
                                 {
-                                    setIncognitoOrUserName(user.displayName);
-                                    setIncognitoOrUserPicUrl(user.photoURL);
+                                    setIncognitoOrUserName(userProfile.userName);
+                                    setIncognitoOrUserPicUrl(userProfile.userPic);
                                 }
                             }}
                         >
