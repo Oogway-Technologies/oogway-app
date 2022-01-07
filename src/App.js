@@ -4,8 +4,8 @@ import './App.css';
 import Login from './Login';
 import Home from './Home';
 import UserProfileSignUp from './UserProfileSignUp';
-import {useStateValue} from './StateProvider'
-
+import {useStateValue} from './StateProvider';
+// import { MoralisProvider } from "react-moralis";
 import {
   BrowserRouter,
 } from "react-router-dom";
@@ -18,22 +18,32 @@ function App() {
       <Home />
     </div>
 
-  return (
-    <div className="app">
-      {!user ? (
-        <Login />
-      ) : (
-        <>
-        <BrowserRouter>
-        
-        {!userProfile && <UserProfileSignUp />}
-        {userProfile && appEntryPoint}
+    {/*}
+    <MoralisProvider
+      appId={process.env.REACT_APP_MORALIS_ID}
+      serverUrl={process.env.REACT_APP_MORALIS_SERVER_URL}
+  >*/}
+{/*</MoralisProvider>*/}
 
-        </BrowserRouter>
-      </>
+  return (
+
+      <div className="app">
+        {!user ? (
+          <Login />
+        ) : (
+          <>
+          <BrowserRouter>
+        
+          {!userProfile && <UserProfileSignUp />}
+          {userProfile && appEntryPoint}
+
+          </BrowserRouter>
+        </>
       )}
 
     </div>
+
+    
   );
 }
 

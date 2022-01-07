@@ -1,9 +1,10 @@
 .appStore {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .appStore__header {
-    padding: 8px 20px;
     display: flex;
     position: sticky;
     background-color: white;
@@ -11,11 +12,21 @@
     z-index: 100;
     top: 0;
     width: 100%;
-    
     justify-content: space-between;
 
     /* Make it float */
     box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+}
+
+.appStore__headerLeft {
+    display: flex;
+}
+
+.appStore__headerLeft > img {
+    padding: 8px 10px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
 
 .appStore__headerUser {
@@ -28,6 +39,10 @@
     margin-left: 10px;
     font-weight: bold;
     padding-right: 30px;
+}
+
+.appStore__body {
+    width: 100%;
 }
 
 .appStore__bodyInfo {
@@ -94,7 +109,12 @@
 }
 
 .appStore__headerLogo {
+    padding: 8px 20px;
     cursor: pointer;
+}
+
+.appStore__headerUser {
+    padding: 8px 20px;
 }
 
 .appStore__body {
