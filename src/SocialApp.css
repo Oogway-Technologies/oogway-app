@@ -1,8 +1,12 @@
 .socialApp {
     background: #f1f2f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .socialApp__content {
+    width:100%;
     background: #f1f2f5;
     display: flex;
     max-width: 1464px;

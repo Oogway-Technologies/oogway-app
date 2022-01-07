@@ -8,6 +8,7 @@ import filterIcon from './icons/fire-dynamic-color.png'
 import evaluateIcon from './icons/tool-dynamic-color.png'
 import socialIcon from './icons/notify-heart-dynamic-color.png'
 import oogwayIcon from './icons/oogway.jpeg'
+import discordIcon from './icons/discord.png'
 import { Avatar } from '@mui/material';
 import {useStateValue} from './StateProvider'
 
@@ -43,9 +44,17 @@ function AppStore() {
     return (
         <div className='appStore'>
             <div className='appStore__header'>
-                <div className='appStore__headerLogo'>
-                    <Logo />
+                <div className='appStore__headerLeft'>
+                    <div className='appStore__headerLogo'>
+                        <Logo />
+                    </div>
+                    <img
+                        src={discordIcon}
+                        onClick={()=> window.open("https://discord.gg/uwRYDcsxXy", "_blank")}
+                        alt=""
+                    />
                 </div>
+
                 <div className='appStore__headerUser'>
                     <Avatar src={userProfile.userPic}/>
                     <h4>{userProfile.userName}</h4>
