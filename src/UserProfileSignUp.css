@@ -2,6 +2,7 @@
     display: grid;
     place-items: center;
     height: 100vh;
+    background: #f1f2f5;
 }
 
 .userProfileSignUp__card {
@@ -92,8 +93,21 @@
     height: 142px;
     object-fit: cover;
     border-radius: 9999px;
-    border: 1px;
+    border: 2px solid #1da1f2;
     margin-right: 16px;
+}
+
+.signup__cancel {
+    display: flex;
+    margin-left: auto;
+}
+
+.signup__cancel > .MuiSvgIcon-root {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    color: #1da1f2;
+    cursor: pointer;
 }
 
 .signup__profilePictureImgLoader {

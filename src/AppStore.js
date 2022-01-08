@@ -11,6 +11,11 @@ import oogwayIcon from './icons/oogway.jpeg'
 import discordIcon from './icons/discord.png'
 import { Avatar } from '@mui/material';
 import {useStateValue} from './StateProvider'
+import UserProfileSignUp from './UserProfileSignUp';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import {
+    Link
+} from "react-router-dom";
 
 function AppStore() {
     const [{ user, userProfile }, dispatch] = useStateValue();
@@ -41,6 +46,11 @@ function AppStore() {
     const oogwayAnswer_p3 = "that will enable users to make better decisions using their personalized assistant."
     const oogwayAnswer = oogwayAnswer_p1 + " " + oogwayAnswer_p2 + " " + oogwayAnswer_p3
 
+    // If the profile is not set yet, enter here
+    if (!userProfile) {
+        return <UserProfileSignUp/>;
+    }
+
     return (
         <div className='appStore'>
             <div className='appStore__header'>
@@ -53,6 +63,9 @@ function AppStore() {
                         onClick={()=> window.open("https://discord.gg/uwRYDcsxXy", "_blank")}
                         alt=""
                     />
+                    <Link to="/signup" style={{ textDecoration: 'none', color: "black"}}>
+                        <AccountBoxIcon className='appStore__accountIcon'/>
+                    </Link>
                 </div>
 
                 <div className='appStore__headerUser'>

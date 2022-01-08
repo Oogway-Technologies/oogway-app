@@ -3,6 +3,7 @@ import './Home.css'
 
 import AppStore from './AppStore';
 import SocialApp from './SocialApp';
+import UserProfileSignUp from './UserProfileSignUp';
 import {useStateValue} from './StateProvider'
 import {
     Routes,
@@ -14,14 +15,9 @@ function Home() {
 
     return (
         <div className='home'>
-            {/*<Sidebar />*/}
-
             <Routes>
-                {/* Personal profile*/}
-                {/*<Route path="/profile" element={<Profile />}/>*/}
-
-                {/* Main App feed */}
-                {/*<Route path="/feed" element={<Feed />}/>*/}
+                {/* Signup */}
+                <Route path="/signup" element={<UserProfileSignUp />}/>
 
                 {/* Main App feed */}
                 <Route path="/socialApp/*" element={<SocialApp />}/> 
@@ -29,8 +25,6 @@ function Home() {
                 {/* Main App entry point */}
                 <Route path="/" element={<AppStore />}/> 
             </Routes>
-            
-            {/*<Widgets />*/}
         </div>
     )
 }

@@ -7,6 +7,7 @@ import {useStateValue} from './StateProvider'
 import LogoLogin from './LogoLogin'
 import discordIcon from './icons/discord.png'
 import githubIcon from './icons/github.png'
+// import metamaskIcon from './icons/metamask_logo.png'
 import db from './firebase'
 
 function Login() {
@@ -17,7 +18,9 @@ function Login() {
             userId: userUniqueId,
             userPosts: [],
             touchedPosts: {},
-            userProfile: {}
+            userProfile: {
+                userId: userUniqueId
+            }
         });
     }
 
@@ -30,8 +33,19 @@ function Login() {
             if (query.docs.length === 1)
             {
                 let tmp = query.docs[0].data();
-                if (Object.keys(tmp.userProfile).length !== 0)
+
+                // A valid profile has the userId + other info
+                // Object.keys(tmp.userProfile).length !== 0
+                if ('userName' in tmp.userProfile)
                 {
+                    // Good to go, the profile is setup.
+                    if (!('userId' in tmp.userProfile))
+                    {
+                        // Add this info for the future
+                        tmp.userProfile['userId'] = userUniqueId;
+                        query.docs[0].ref.update(tmp);
+                    }
+
                     // Dispatch active profile
                     dispatch({
                         type: actionTypes.SET_PROFILE,
@@ -71,7 +85,7 @@ function Login() {
         });
     }
 
-    const signIn = () => {
+    const signInWithGoogle = () => {
         // Sign In
         auth.signInWithPopup(provider)
         .then(result => {
@@ -82,13 +96,6 @@ function Login() {
             // Set user profile, if present
             handleSetUserProfile(result.user, result.user.uid)
 
-            // Dispatch the login to actually enable login
-            //dispatch({
-            //    type: actionTypes.SET_USER,
-            //    user: result.user
-            //})
-
-            // console.log(result.user)
         }).catch(error => alert(error.message));
     };
 
@@ -126,13 +133,28 @@ function Login() {
                 </div>
             </div>
             
-            <div className='login__button' onClick={signIn}>
-                <img
-                    src={googleLogo}
-                    alt=""/>
-                <div className='login__buttonText'>
-                    <p>Sign in with Google</p>
+            <div className='loggin_footer'>
+                <div className='login__button login__google' onClick={signInWithGoogle}>
+                    <img
+                        src={googleLogo}
+                        alt=""
+                    />
+                    <div className='login__buttonText'>
+                        <p>Sign in with Google</p>
+                    </div>
                 </div>
+                {/*
+                // Cool stuff here...
+                <div className='login__button login__metamask' onClick={signInWithMetaMask}>
+                    <img
+                        src={metamaskIcon}
+                        alt=""
+                    />
+                    <div className='login__buttonText'>
+                        <p>Sign in with MetaMask</p>
+                    </div>
+                </div>
+                */}
             </div>
         </div>
     )

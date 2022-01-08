@@ -2,6 +2,7 @@
     display: grid;
     place-items: center;
     height: 100vh;
+    background: #f1f2f5;
 }
 
 .login__button {
@@ -11,6 +12,7 @@
     cursor: pointer;
     border-radius: 2px;
     border: 1px solid #1da1f2;
+    margin-bottom: 5px;
 }
 
 .login__button > img {
@@ -24,6 +26,7 @@
 
 .login__buttonText {
     padding: 13px;
+    width: 100%;
 }
 
 .login__buttonText > p {
@@ -37,6 +40,12 @@
 
 .login__buttonText:hover > p {
     color: #1da1f2;
+}
+
+.login__metamask > img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
 .login__info {
