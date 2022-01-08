@@ -4,14 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StateProvider } from './StateProvider';
+import { MoralisProvider } from "react-moralis";
 import reducer, {initialState} from './reducer';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <StateProvider initialState={initialState} reducer={reducer}>
-      <App />
-    </StateProvider>
-  </React.StrictMode>,
+    <React.StrictMode>
+      <MoralisProvider
+        appId={process.env.REACT_APP_MORALIS_ID}
+        serverUrl={process.env.REACT_APP_MORALIS_SERVER_URL}
+      >
+        <StateProvider initialState={initialState} reducer={reducer}>
+          <App />
+        </StateProvider>
+      </MoralisProvider>
+    </React.StrictMode>,
   document.getElementById('root')
 );
 

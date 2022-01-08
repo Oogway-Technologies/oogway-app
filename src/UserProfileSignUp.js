@@ -5,6 +5,11 @@ import ProfileNameInput from './ProfileNameInput'
 import {useStateValue} from './StateProvider'
 import { storage } from "./firebase";
 import db from './firebase'
+import { useNavigate } from 'react-router-dom';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import {
+    Link
+} from "react-router-dom";
 
 function UserProfileSignUp() {
     const [{ user, userProfile }, dispatch] = useStateValue();
@@ -14,18 +19,62 @@ function UserProfileSignUp() {
     const [toggleFailMsg, setToggleFailMsg] = useState("");
 
     const randomName = uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] });
-    const userFirstName = user.displayName.split(/[ ,]+/)[0];
-    const userLastName = user.displayName.split(/[ ,]+/)[1];
+    console.log(userProfile);
+    console.log("here");
+    const userProfilePic =
+        (
+            userProfile && 'userPic' in userProfile
+        ) ? (
+            userProfile['userPic']
+        ) : (
+            user.photoURL
+        );
+
+    const userRndName =
+        (
+            userProfile && 'userName' in userProfile
+        ) ? (
+            userProfile['userName']
+        ) : (
+            randomName
+        );
+
+    const userFirstName =
+        (
+            userProfile && 'userFirstName' in userProfile
+        ) ? (
+            userProfile['userFirstName']
+        ) : (
+            user.displayName.split(/[ ,]+/)[0]
+        );
+
+    const userLastName = 
+        (
+            userProfile && 'userLastName' in userProfile
+        ) ? (
+            userProfile['userLastName']
+        ) : (
+            user.displayName.split(/[ ,]+/)[1]
+        );
+         
+    const userBioInfo = 
+        (
+            userProfile && 'userBio' in userProfile
+        ) ? (
+            userProfile['userBio']
+        ) : (
+            ""
+        );
 
     // Default values
-    const [urlImage, setUrlImage] = useState(user.photoURL);
-    const [usernameInfo, setUsernamInfo] = useState(randomName);
+    const [urlImage, setUrlImage] = useState(userProfilePic);
+    const [usernameInfo, setUsernamInfo] = useState(userRndName);
     const [nameInfo, setNameInfo] = useState(userFirstName);
     const [lastNameInfo, setLastNameInfo] = useState(userLastName);
-    const [bioInfo, setBioInfo] = useState("");
+    const [bioInfo, setBioInfo] = useState(userBioInfo);
 
-    const inputFile = useRef(null) 
-
+    const inputFile = useRef(null);
+    const navigate = useNavigate();
     function makeRandomIdPrefix(length) {
         var result           = '';
         var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -51,6 +100,7 @@ function UserProfileSignUp() {
                 tmp.userProfile['userFirstName'] = nameInfo;
                 tmp.userProfile['userLastName'] = lastNameInfo;
                 tmp.userProfile['userBio'] = bioInfo;
+                tmp.userProfile['userUID'] = user.uid;
                 
                 const userProfile = {};
                 userProfile['userPic'] = urlImage;
@@ -58,6 +108,7 @@ function UserProfileSignUp() {
                 userProfile['userFirstName'] = nameInfo;
                 userProfile['userLastName'] = lastNameInfo;
                 userProfile['userBio'] = bioInfo;
+                userProfile['userUID'] = user.uid;
                 
                 setToggleSuccessMsg(userProfile);
                 setToggleFailMsg("");
@@ -130,8 +181,7 @@ function UserProfileSignUp() {
                             </p>
                             <span></span>
                             <p>
-                                Note, this is a <strong>one-time</strong> step but it will log you out and you will need
-                                to log in again to see your changes in effect.
+                                Note, this is a <strong>one-time</strong> step and you can always change your profile information later.
                             </p>
                             <span></span>
                             {toggleSuccessMsg ? (
@@ -164,6 +214,7 @@ function UserProfileSignUp() {
                             <img
                                 className='signup__profilePictureImg'
                                 src={urlImage}
+                                alt=""
                             />
                             <div className='signup__profilePictureImgLoader'>
                                 <label>Profile Picture</label>
@@ -178,7 +229,6 @@ function UserProfileSignUp() {
                                         setImage(e);
                                     }}
                                 />
-                                {/*<label htmlFor="profilePicLoaderId">*/}
                                     <button
                                         onClick={(e) => {
                                             e.preventDefault();
@@ -187,14 +237,19 @@ function UserProfileSignUp() {
                                     >
                                         Upload new image...
                                     </button>
-                                {/*</label>*/}
                             </div>
+
+                            <Link to="/" style={{ textDecoration: 'none', color: "black"}}>
+                                <div className='signup__cancel'>
+                                    <CancelOutlinedIcon sx={{ fontSize: 40 }}/>
+                                </div>
+                            </Link>
                         </div>
 
                         {/* Username */}
                         <div className='signup__profileData'>
                             <ProfileNameInput labelText="Username"
-                                placeholder={randomName}
+                                placeholder={userRndName}
                                 callbackSetter={setUsernamInfo}
                             />
                         </div>
@@ -222,7 +277,7 @@ function UserProfileSignUp() {
                             <textarea
                                 rows={4}
                                 className='signup__profileDataTextArea'
-                                placeholder='Write something about yourself, if you like...'
+                                placeholder={userBioInfo ? userBioInfo : 'Write something about yourself, if you like...'}
                                 onChange={(e) => {
                                     setBioInfo(e.target.value);
                                 }}
@@ -235,16 +290,10 @@ function UserProfileSignUp() {
                                 onClick={(e) => {
                                     e.preventDefault();
                                     handleSetProfile();
+                                    navigate("/");
                                 }}
                             >
                                 Save Changes
-                            </button>
-                            <button
-                                type="submit"
-                                onClick={(e) => {
-                                }}
-                            >
-                                Log out
                             </button>
                         </div>
 
