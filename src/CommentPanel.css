@@ -17,16 +17,26 @@
     /* Take all the room it can possibly take */
     flex: 1;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 5px;
 }
 
-.commentPanel__inputRight > form > input {
+/* .commentPanel__inputRight > form > input */
+.commentPanel__inputText {
+    margin: 0 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.commentPanel__inputText > input {
     outline-width: 0;
     border: none;
     padding: 5px 20px;
-    margin: 0 10px;
     border-radius: 999px;
     background-color: #eff2f5;
+    flex: 1;
+    margin-bottom: 5px;
 }
 
 .commentPanel__inputRight > form > button {
@@ -51,6 +61,37 @@
     border-radius: 15px;
 }
 
+.commentPanel__options {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.commentPanel__optionImg {
+    cursor: pointer;
+}
+
+.commentPanel__optionImg:hover {
+    color: #1da1f2;
+}
+
+.commentPanel__optionIncognito {
+    cursor: pointer;
+}
+
+.commentPanel__optionIncognito:hover {
+    color: orange;
+}
+
 .commentPanel__message {
     flex: 1;
+}
+
+.commentPanel__optionPost {
+    cursor: pointer;
+}
+
+.commentPanel__optionPost:hover {
+    color: green;
 }

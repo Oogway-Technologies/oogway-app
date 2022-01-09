@@ -48,7 +48,7 @@ function DecisionSender() {
     const [contextMessage, setContextMessage] = useState('');
 
     // Get user unique ID
-    let uniqueUserId = user.uid;
+    let uniqueUserId = userProfile.userId;
 
     // Create a random seed
     function makeRandomSeed(length) {
