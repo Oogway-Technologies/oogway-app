@@ -2,9 +2,13 @@ import React, { useState }  from 'react'
 import './CommentPanel.css'
 
 import DecisionPostComment from './DecisionPostComment';
+import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
+// import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
+import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import { Avatar, Button } from '@mui/material'
 import {useStateValue} from './StateProvider'
+import { storage } from "./firebase";
 import db from './firebase'
 
 function CommentPanel({commentsList, postId}) {
@@ -13,6 +17,7 @@ function CommentPanel({commentsList, postId}) {
     const [toggleAvatarIncognito, setToggleAvatarIncognito] = useState(false);
     const [incognitoOrUserPicUrl, setIncognitoOrUserPicUrl] = useState(userProfile.userPic);
     const [incognitoOrUserName, setIncognitoOrUserName] = useState(userProfile.userName);
+    const [targetValueVar, setTargetValueVar] = useState(null);
 
     // Create a random seed
     function makeRandomSeed(length) {
@@ -34,9 +39,6 @@ function CommentPanel({commentsList, postId}) {
         .then((doc) => {
             if (doc.exists)
             {
-                //let timestampServer = firebase.firestore.FieldValue.serverTimestamp();
-                //console.log(timestampServer)
-                //let timestampStr = new Date(timestampServer?.toDate()).toUTCString();
                 var date = new Date();
                 let timestampStr = date.toUTCString();
                 let tmp = doc.data();
@@ -61,6 +63,47 @@ function CommentPanel({commentsList, postId}) {
         setInput("");
     }
 
+    const setMediaFile = (e) => {
+        const file = e.target.files[0]
+        const randomImagePrefix = makeRandomSeed(8);
+        const randomImageName = randomImagePrefix + file.name;
+        const ref = storage.ref(`/images/${userProfile.userId}/${randomImageName}`);
+        const uploadTask = ref.put(file);
+
+        uploadTask.on('stage_changed', console.log, console.error, () => {
+            ref.getDownloadURL()
+            .then((url) => {
+                // Display media
+                db.collection('posts')
+                .doc(postId)
+                .get()
+                .then((doc) => {
+                    if (doc.exists)
+                    {
+                        // Push new post
+                        var date = new Date();
+                        let timestampStr = date.toUTCString();
+                        let tmp = doc.data();
+                        tmp.commentList.push({
+                            message: input,
+                            profilePic: incognitoOrUserPicUrl,
+                            timestamp: timestampStr,
+                            username: incognitoOrUserName,
+                            image: url
+                        });
+                        doc.ref.update(tmp);
+                    }
+                    
+                    if (targetValueVar)
+                    {
+                        targetValueVar.target.value = ""
+                    }
+                });
+            });
+        });
+    }
+
+
     return (
         <div className='commentPanel'>
             <div className='commentPanel__feed'>
@@ -72,6 +115,8 @@ function CommentPanel({commentsList, postId}) {
                             commentName={comment.username}
                             timestamp={comment.timestamp}
                             commentMsg={comment.message}
+                            image={comment.image}
+                            postId={postId}
                         />))
                 }
             </div>
@@ -81,33 +126,66 @@ function CommentPanel({commentsList, postId}) {
                 </div>
                 <div className='commentPanel__inputRight'>
                     <form>
-                        <input
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                            className='commentPanel__message'
-                            placeholder="Write a comment..."
-                        />
+                        <div className='commentPanel__inputText'>
+                            <input
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                className='commentPanel__message'
+                                placeholder="Write a comment..."
+                            />
+                            
+                            <div className='commentPanel__options'>
+                                <input
+                                    type='file'
+                                    accept="image/*"
+                                    style={{display: 'none'}}
+                                    id="load_comment_media"
+                                    onChange={(e) => {
+                                        //e.preventDefault();
+                                        setTargetValueVar(e);
+                                        setMediaFile(e);
+                                    }}
+                                    onClick={(event)=> { 
+                                        event.target.value = null
+                                   }}
+                                >
+                                </input>
+                                <label htmlFor="load_comment_media">
+                                    <ImageOutlinedIcon
+                                        fontSize="small"
+                                        className='commentPanel__optionImg'
+                                        onClick={() => {
+                                            // handlePostImage();
+                                        }}
+                                    />
+                                </label>
 
-                        <Button onClick={handleSubmit} type="submit">
+                                <AdminPanelSettingsOutlinedIcon
+                                    fontSize="small"
+                                    className='commentPanel__optionIncognito'
+                                    onClick={() => {
+                                        setToggleAvatarIncognito(!toggleAvatarIncognito);
+                                        if (!toggleAvatarIncognito) {
+                                            setIncognitoOrUserName('Oogway_' + makeRandomSeed(5));
+                                            setIncognitoOrUserPicUrl(`https://avatars.dicebear.com/api/pixel-art/${makeRandomSeed(8)}.svg`);
+                                        }
+                                        else
+                                        {
+                                            setIncognitoOrUserName(userProfile.userName);
+                                            setIncognitoOrUserPicUrl(userProfile.userPic);
+                                        }
+                                    }}
+                                />
+                                <SendOutlinedIcon
+                                    fontSize="small"
+                                    className='commentPanel__optionPost'
+                                    onClick={handleSubmit}
+                                />
+                            </div>
+                        </div>
+                        <Button onClick={handleSubmit} type="submit" style={{display: "none"}}>
                             Post
                         </Button>
-
-                        <div className='commentPanel__inputRightIncognito'
-                            onClick={() => {
-                                setToggleAvatarIncognito(!toggleAvatarIncognito);
-                                if (!toggleAvatarIncognito) {
-                                    setIncognitoOrUserName('Oogway_' + makeRandomSeed(5));
-                                    setIncognitoOrUserPicUrl(`https://avatars.dicebear.com/api/pixel-art/${makeRandomSeed(8)}.svg`);
-                                }
-                                else
-                                {
-                                    setIncognitoOrUserName(userProfile.userName);
-                                    setIncognitoOrUserPicUrl(userProfile.userPic);
-                                }
-                            }}
-                        >
-                            <AdminPanelSettingsOutlinedIcon fontSize="small" style={{ color: "orange"}} />
-                        </div>
                     </form>
                 </div>
             </div>
